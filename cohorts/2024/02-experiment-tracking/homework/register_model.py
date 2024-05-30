@@ -30,6 +30,7 @@ def train_and_log_model(data_path, params):
     X_test, y_test = load_pickle(os.path.join(data_path, "test.pkl"))
 
     with mlflow.start_run():
+<<<<<<< HEAD
         mlflow.set_tag('model', 'random forest')
         mlflow.log_param('parameters', params)
 
@@ -45,6 +46,13 @@ def train_and_log_model(data_path, params):
             params[param] = int(params[param])
             
         rf = RandomForestRegressor(**params)
+=======
+        new_params = {}
+        for param in RF_PARAMS:
+            new_params[param] = int(params[param])
+
+        rf = RandomForestRegressor(**new_params)
+>>>>>>> 636c66a36509021112b6851e1666b22418807098
         rf.fit(X_train, y_train)
 
         # Evaluate model on the validation and test sets
